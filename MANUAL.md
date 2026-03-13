@@ -75,6 +75,14 @@ One-pole 6dB/octave highpass filter. Range: OFF (0 Hz) to 1000 Hz. Removes low-e
 
 One-pole 6dB/octave lowpass filter. Range: 1000 Hz to OFF (20000 Hz). Tames harsh highs from granular artifacts or spectral processing. Softens the output.
 
+### Low-Shelf EQ
+
+Biquad low-shelf filter applied before HPF/LPF. Boosts low frequencies for added warmth and weight.
+
+- **Low Boost** (knob 6) — Boost amount, 0 to +6 dB (default: 0 = off). No CPU cost when at 0.
+- **Low Freq** (knob 7) — Shelf frequency, 30–400 Hz (default: 100 Hz). Sets where the boost begins.
+- **Low Q** (knob 8) — Shelf Q factor, 0.1–4.0 (default: 0.7). Lower = gentle slope, higher = resonant bump at the shelf frequency.
+
 ### Limiter
 
 Tape-style soft clipper at the end of the chain. Tames peaks without hard clipping.
@@ -142,6 +150,25 @@ The soft clipper uses a cubic polynomial for gentle saturation and a sine wavesh
 | Limiter | OFF / ON | OFF | — | Jog | Tape soft clipper |
 | Pre Gain | -6 to +6 dB | 0 dB | 0.5 dB | Jog | Limiter input drive |
 | Post Gain | -6 to +6 dB | 0 dB | 0.5 dB | Jog | Limiter output level |
+| Low Boost | 0 to +6 dB | 0 dB | 0.5 dB | Filters 6 | Low-shelf boost amount |
+| Low Freq | 30–400 Hz | 100 Hz | 10 Hz | Filters 7 | Low-shelf frequency |
+| Low Q | 0.1–4.0 | 0.7 | 0.1 | Filters 8 | Low-shelf Q factor |
+
+---
+
+## Changelog
+
+### v1.1.0
+
+- **Fixed** volume drop at Mix 0% (Clouds' equal-power crossfade attenuated dry signal by -3dB)
+- **Fixed** Spectral mode being significantly louder than other modes
+- **Fixed** pitch-dependent volume loss (wet signal gain compensation)
+- **Added** texture knob smoothing (100ms one-pole, eliminates zipper noise)
+- **Added** low-shelf EQ with 3 parameters (Low Boost, Low Freq, Low Q) on Filters page knobs 6-7-8
+
+### v1.0.0
+
+- Initial release — all four Clouds modes, output HPF/LPF, tape limiter
 
 ---
 
