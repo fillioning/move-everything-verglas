@@ -1,7 +1,12 @@
 MIT License
 
-Original Clouds DSP code:
+Original Clouds DSP code (STM32F projects — MIT licensed):
 Copyright (c) 2014 Emilie Gillet (emilie.o.gillet@gmail.com)
+Source: https://github.com/pichenettes/eurorack
+
+stmlib utility library (STM32F projects — MIT licensed):
+Copyright (c) 2012-2016 Emilie Gillet (emilie.o.gillet@gmail.com)
+Source: https://github.com/pichenettes/stmlib
 
 Move port and wrapper:
 Copyright (c) 2026 fillioning
