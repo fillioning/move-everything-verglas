@@ -1,8 +1,9 @@
 /*
- * Verglas — Chain UI
+ * Weird Drum — Chain UI
  *
  * 2-page parameter browser with jog navigation and editing.
- * Modeled on Super Boum's working ui_chain.js pattern.
+ * Page 1: Tone (oscillator + pitch modulation)
+ * Page 2: Noise/Master (noise filter + mix + distortion + level)
  */
 
 import {
@@ -27,33 +28,29 @@ const KNOB_CC_BASE = 71;
 
 const PAGES = [
     {
-        name: "Verglas",
+        name: "Tone",
         params: [
-            { key: "position", name: "Position", min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "size",     name: "Size",     min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "pitch",    name: "Pitch",    min: -24, max: 24, step: 1,    fmt: v => `${v >= 0 ? "+" : ""}${Math.round(v)} st` },
-            { key: "density",  name: "Density",  min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "texture",  name: "Texture",  min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "feedback", name: "Feedback", min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "reverb",   name: "Reverb",   min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "dry_wet",  name: "Mix",      min: 0,   max: 1,  step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
-            { key: "mode",     name: "Mode",     min: 0,   max: 3,  step: 1,    enum: ["Granular", "Stretch", "Looper", "Spectral"] },
-            { key: "freeze",   name: "Freeze",   min: 0,   max: 1,  step: 1,    enum: ["Off", "On"] },
-            { key: "quality",  name: "Quality",  min: 0,   max: 1,  step: 1,    enum: ["16-bit", "Lo-Fi"] },
-            { key: "stereo_spread", name: "Spread", min: 0, max: 1, step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` }
+            { key: "freq",           name: "Freq",       min: 20,    max: 2000, step: 1,     fmt: v => `${Math.round(v)} Hz` },
+            { key: "attack",         name: "Attack",     min: 0.001, max: 1,    step: 0.001, fmt: v => `${(v*1000).toFixed(0)} ms` },
+            { key: "decay",          name: "Decay",      min: 0.001, max: 2,    step: 0.01,  fmt: v => `${(v*1000).toFixed(0)} ms` },
+            { key: "wave_type",      name: "Wave",       min: 0,     max: 2,    step: 1,     enum: ["Sine", "Saw", "Square"] },
+            { key: "pitch_env_amt",  name: "P.Env Amt",  min: 0,     max: 1,    step: 0.01,  fmt: v => `${(v*100).toFixed(0)}%` },
+            { key: "pitch_env_rate", name: "P.Env Rate", min: 0.001, max: 1,    step: 0.001, fmt: v => `${(v*1000).toFixed(0)} ms` },
+            { key: "pitch_lfo_amt",  name: "LFO Amt",    min: 0,     max: 1,    step: 0.01,  fmt: v => `${(v*100).toFixed(0)}%` },
+            { key: "pitch_lfo_rate", name: "LFO Rate",   min: 0.1,   max: 80,   step: 0.1,   fmt: v => `${v.toFixed(1)} Hz` }
         ]
     },
     {
-        name: "Filters",
+        name: "Noise/Master",
         params: [
-            { key: "filter_hp",    name: "HPF",       min: 0,    max: 1000,  step: 10, fmt: v => v < 1 ? "OFF" : `${Math.round(v)} Hz` },
-            { key: "filter_lp",    name: "LPF",       min: 1000, max: 20000, step: 10, fmt: v => v > 19999 ? "OFF" : `${Math.round(v)} Hz` },
-            { key: "limiter_on",   name: "Limiter",   min: 0,    max: 1,     step: 1,  enum: ["Off", "On"] },
-            { key: "limiter_pre",  name: "Pre Gain",  min: -6,   max: 6,     step: 0.5, fmt: v => `${v >= 0 ? "+" : ""}${v.toFixed(1)} dB` },
-            { key: "limiter_post", name: "Post Gain", min: -6,   max: 6,     step: 0.5, fmt: v => `${v >= 0 ? "+" : ""}${v.toFixed(1)} dB` },
-            { key: "low_boost",    name: "Low Boost",  min: 0,   max: 6,     step: 0.5, fmt: v => v < 0.1 ? "OFF" : `+${v.toFixed(1)} dB` },
-            { key: "low_freq",     name: "Low Freq",   min: 30,  max: 400,   step: 10,  fmt: v => `${Math.round(v)} Hz` },
-            { key: "low_q",        name: "Low Q",      min: 0.1, max: 4.0,   step: 0.1, fmt: v => v.toFixed(1) }
+            { key: "filter_type",   name: "Filter",   min: 0,    max: 2,     step: 1,    enum: ["LP", "HP", "BP"] },
+            { key: "filter_cutoff", name: "Cutoff",   min: 20,   max: 18000, step: 10,   fmt: v => `${Math.round(v)} Hz` },
+            { key: "filter_res",    name: "Reso",     min: 0.1,  max: 5,     step: 0.1,  fmt: v => v.toFixed(1) },
+            { key: "noise_attack",  name: "N.Attack", min: 0.001, max: 1,    step: 0.001, fmt: v => `${(v*1000).toFixed(0)} ms` },
+            { key: "noise_decay",   name: "N.Decay",  min: 0.001, max: 1,    step: 0.01, fmt: v => `${(v*1000).toFixed(0)} ms` },
+            { key: "mix",           name: "Mix",      min: 0,    max: 1,     step: 0.01, fmt: v => `${(v*100).toFixed(0)}%` },
+            { key: "distortion",    name: "Distort",  min: 0,    max: 50,    step: 0.5,  fmt: v => v.toFixed(1) },
+            { key: "level",         name: "Level",    min: -96,  max: 24,    step: 0.5,  fmt: v => `${v >= 0 ? "+" : ""}${v.toFixed(1)} dB` }
         ]
     }
 ];
@@ -126,7 +123,7 @@ function fetchAllParams() {
 
 function drawRootView() {
     clear_screen();
-    drawHeader("Verglas");
+    drawHeader("Weird Drum");
 
     const activePage = PAGES[selectedPage];
     print(2, 12, activePage.name, 1);
@@ -159,7 +156,7 @@ function drawPageView() {
     clear_screen();
 
     const page = PAGES[selectedPage];
-    drawHeader(`Verglas: ${page.name}`);
+    drawHeader(`WD: ${page.name}`);
 
     const lh = 11;
     const y0 = 16;

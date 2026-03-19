@@ -1,11 +1,11 @@
 {
-    "id": "verglas",
-    "name": "Verglas",
-    "abbrev": "VRGL",
-    "version": "1.2.2",
-    "description": "Mutable Instruments Clouds granular processor — granular, stretch, looper, and spectral modes for Ableton Move",
-    "author": "Emilie Gillet (DSP) / fillioning (port)",
-    "dsp": "verglas.so",
+    "id": "weird_drum",
+    "name": "Weird Drum",
+    "abbrev": "WDRM",
+    "version": "1.0.0",
+    "description": "Analog-style drum synthesizer — oscillator + filtered noise + distortion, inspired by WeirdDrums",
+    "author": "dfilaretti (DSP) / fillioning (port)",
+    "dsp": "weird_drum.so",
     "ui_chain": "ui_chain.js",
     "api_version": 2,
     "component_type": "audio_fx",
@@ -14,48 +14,43 @@
         "component_type": "audio_fx",
         "audio_in": true,
         "chain_params": [
-            {"key": "position",      "name": "Position",  "type": "float", "min": 0,    "max": 1,     "default": 0.5,    "step": 0.01},
-            {"key": "size",          "name": "Size",      "type": "float", "min": 0,    "max": 1,     "default": 0.5,    "step": 0.01},
-            {"key": "pitch",         "name": "Pitch",     "type": "int",   "min": -24,  "max": 24,    "default": 0,      "step": 1},
-            {"key": "density",       "name": "Density",   "type": "float", "min": 0,    "max": 1,     "default": 1.0,    "step": 0.01},
-            {"key": "texture",       "name": "Texture",   "type": "float", "min": 0,    "max": 1,     "default": 0.5,    "step": 0.01},
-            {"key": "feedback",      "name": "Feedback",  "type": "float", "min": 0,    "max": 1,     "default": 0,      "step": 0.01},
-            {"key": "reverb",        "name": "Reverb",    "type": "float", "min": 0,    "max": 1,     "default": 0,      "step": 0.01},
-            {"key": "dry_wet",       "name": "Mix",       "type": "float", "min": 0,    "max": 1,     "default": 0.5,    "step": 0.01},
-            {"key": "mode",          "name": "Mode",      "type": "enum",  "options": ["Granular", "Stretch", "Looper", "Spectral"], "default": 0},
-            {"key": "freeze",        "name": "Freeze",    "type": "enum",  "options": ["Off", "On"], "default": 0},
-            {"key": "quality",       "name": "Quality",   "type": "enum",  "options": ["16-bit", "Lo-Fi"], "default": 0},
-            {"key": "stereo_spread", "name": "Spread",    "type": "float", "min": 0,    "max": 1,     "default": 1.0,    "step": 0.01},
-            {"key": "filter_hp",     "name": "HPF",       "type": "int",   "min": 0,    "max": 1000,  "default": 0,      "step": 10},
-            {"key": "filter_lp",     "name": "LPF",       "type": "int",   "min": 1000, "max": 20000, "default": 20000,  "step": 10},
-            {"key": "limiter_on",    "name": "Limiter",   "type": "enum",  "options": ["Off", "On"], "default": 0},
-            {"key": "limiter_pre",   "name": "Pre Gain",  "type": "float", "min": -6,   "max": 6,     "default": 0,      "step": 0.5},
-            {"key": "limiter_post",  "name": "Post Gain", "type": "float", "min": -6,   "max": 6,     "default": 0,      "step": 0.5},
-            {"key": "low_boost",    "name": "Low Boost", "type": "float", "min": 0,    "max": 6,     "default": 0,      "step": 0.5},
-            {"key": "low_freq",     "name": "Low Freq",  "type": "int",   "min": 30,   "max": 400,   "default": 100,    "step": 10},
-            {"key": "low_q",        "name": "Low Q",     "type": "float", "min": 0.1,  "max": 4.0,   "default": 0.7,    "step": 0.1}
+            {"key": "freq",           "name": "Freq",       "type": "float", "min": 20,    "max": 2000,  "default": 55,     "step": 1},
+            {"key": "attack",         "name": "Attack",     "type": "float", "min": 0.001, "max": 1,     "default": 0.001,  "step": 0.001},
+            {"key": "decay",          "name": "Decay",      "type": "float", "min": 0.001, "max": 2,     "default": 0.5,    "step": 0.01},
+            {"key": "wave_type",      "name": "Wave",       "type": "enum",  "options": ["Sine", "Saw", "Square"], "default": 0},
+            {"key": "pitch_env_amt",  "name": "P.Env Amt",  "type": "float", "min": 0,     "max": 1,     "default": 0,      "step": 0.01},
+            {"key": "pitch_env_rate", "name": "P.Env Rate", "type": "float", "min": 0.001, "max": 1,     "default": 0.1,    "step": 0.001},
+            {"key": "pitch_lfo_amt",  "name": "LFO Amt",    "type": "float", "min": 0,     "max": 1,     "default": 0,      "step": 0.01},
+            {"key": "pitch_lfo_rate", "name": "LFO Rate",   "type": "float", "min": 0.1,   "max": 80,    "default": 0.45,   "step": 0.1},
+            {"key": "filter_type",    "name": "Filter",     "type": "enum",  "options": ["LP", "HP", "BP"], "default": 0},
+            {"key": "filter_cutoff",  "name": "Cutoff",     "type": "float", "min": 20,    "max": 18000, "default": 400,    "step": 10},
+            {"key": "filter_res",     "name": "Reso",       "type": "float", "min": 0.1,   "max": 5,     "default": 1,      "step": 0.1},
+            {"key": "noise_attack",   "name": "N.Attack",   "type": "float", "min": 0.001, "max": 1,     "default": 0.01,   "step": 0.001},
+            {"key": "noise_decay",    "name": "N.Decay",    "type": "float", "min": 0.001, "max": 1,     "default": 0.4,    "step": 0.01},
+            {"key": "mix",            "name": "Mix",        "type": "float", "min": 0,     "max": 1,     "default": 0.5,    "step": 0.01},
+            {"key": "distortion",     "name": "Distort",    "type": "float", "min": 0,     "max": 50,    "default": 0,      "step": 0.5},
+            {"key": "level",          "name": "Level",      "type": "float", "min": -96,   "max": 24,    "default": 0,      "step": 0.5}
         ],
         "ui_hierarchy": {
             "modes": null,
             "levels": {
                 "root": {
-                    "name": "Verglas",
-                    "knobs": ["position", "size", "pitch", "density", "texture", "feedback", "reverb", "dry_wet"],
+                    "name": "Weird Drum",
+                    "knobs": ["freq", "attack", "decay", "wave_type", "pitch_env_amt", "pitch_env_rate", "pitch_lfo_amt", "pitch_lfo_rate"],
                     "params": [
-                        {"level": "Verglas", "label": "Verglas"},
-                        {"level": "Filters", "label": "Filters"}
+                        {"level": "Tone", "label": "Tone"},
+                        {"level": "Noise/Master", "label": "Noise/Master"}
                     ]
                 },
-                "Verglas": {
-                    "label": "Verglas",
-                    "knobs": ["position", "size", "pitch", "density", "texture", "feedback", "reverb", "dry_wet"],
-                    "params": ["position", "size", "pitch", "density", "texture", "feedback", "reverb", "dry_wet",
-                        "mode", "freeze", "quality", "stereo_spread"]
+                "Tone": {
+                    "label": "Tone",
+                    "knobs": ["freq", "attack", "decay", "wave_type", "pitch_env_amt", "pitch_env_rate", "pitch_lfo_amt", "pitch_lfo_rate"],
+                    "params": ["freq", "attack", "decay", "wave_type", "pitch_env_amt", "pitch_env_rate", "pitch_lfo_amt", "pitch_lfo_rate"]
                 },
-                "Filters": {
-                    "label": "Filters",
-                    "knobs": ["filter_hp", "filter_lp", "limiter_on", "limiter_pre", "limiter_post", "low_boost", "low_freq", "low_q"],
-                    "params": ["filter_hp", "filter_lp", "limiter_on", "limiter_pre", "limiter_post", "low_boost", "low_freq", "low_q"]
+                "Noise/Master": {
+                    "label": "Noise/Master",
+                    "knobs": ["filter_type", "filter_cutoff", "filter_res", "noise_attack", "noise_decay", "mix", "distortion", "level"],
+                    "params": ["filter_type", "filter_cutoff", "filter_res", "noise_attack", "noise_decay", "mix", "distortion", "level"]
                 }
             }
         }
