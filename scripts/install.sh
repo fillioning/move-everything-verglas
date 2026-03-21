@@ -11,7 +11,7 @@ if [ ! -f "$MODULE_DIR/verglas.so" ]; then
 fi
 
 echo "Installing Verglas to $MOVE_IP..."
-DEST="/data/UserData/move-anything/modules/audio_fx/verglas"
+DEST="/data/UserData/schwung/modules/audio_fx/verglas"
 ssh root@$MOVE_IP "mkdir -p $DEST"
 scp "$MODULE_DIR/verglas.so" "$MODULE_DIR/module.json" "$MODULE_DIR/ui_chain.js" root@$MOVE_IP:$DEST/
 if [ -f "$MODULE_DIR/help.json" ]; then
