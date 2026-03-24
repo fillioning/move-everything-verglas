@@ -1,6 +1,6 @@
 # Verglas
 
-Mutable Instruments Clouds granular processor as audio FX for Ableton Move, built for the [Move Everything](https://github.com/charlesvestal/move-everything) framework.
+Mutable Instruments Clouds granular processor as audio FX for Ableton Move, built for the [Schwung](https://github.com/charlesvestal/schwung) framework.
 
 **Verglas** is a faithful port of Emilie Gillet's [Clouds](https://mutable-instruments.net/modules/clouds/) — four processing modes (granular, time-stretch, looping delay, spectral), feedback, reverb, freeze, and quality degradation. Extended with output HPF/LPF filters, low-shelf EQ, and a tape-style soft limiter.
 
