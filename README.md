@@ -1,12 +1,12 @@
 # Verglas
 
-Mutable Instruments Clouds granular processor as audio FX for Ableton Move, built for the [Move Everything](https://github.com/charlesvestal/move-everything) framework.
+Mutable Instruments Clouds granular processor as audio FX for Ableton Move, built for the [Schwung](https://github.com/charlesvestal/move-everything) framework.
 
 **Verglas** is a faithful port of Emilie Gillet's [Clouds](https://mutable-instruments.net/modules/clouds/) — four processing modes (granular, time-stretch, looping delay, spectral), feedback, reverb, freeze, and quality degradation. Extended with output HPF/LPF filters, low-shelf EQ, and a tape-style soft limiter.
 
 ## Install
 
-Available from the Move Everything Module Store on your device, or manually:
+Available from the Schwung Module Store on your device, or manually:
 
 ```bash
 ./scripts/build.sh              # or: docker build -t verglas-builder . && docker cp $(docker create verglas-builder):/build/modules/verglas ./modules/verglas
@@ -43,7 +43,7 @@ See [MANUAL.md](MANUAL.md) for full documentation.
 - **DSP**: Emilie Gillet / [Mutable Instruments](https://github.com/pichenettes/eurorack) (MIT License)
 - **Soft clipper**: Inspired by [Chowdhury DSP](https://github.com/Chowdhury-DSP) and [Airwindows](https://github.com/airwindows/airwindows)
 - **Move port**: fillioning
-- **Framework**: [Move Everything](https://github.com/charlesvestal/move-everything)
+- **Framework**: [Schwung](https://github.com/charlesvestal/move-everything)
 
 ## License
 
