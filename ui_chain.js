@@ -9,14 +9,14 @@ import {
     MoveMainKnob,
     MoveBack,
     LightGrey
-} from '/data/UserData/move-anything/shared/constants.mjs';
+} from '/data/UserData/schwung/shared/constants.mjs';
 
-import { decodeDelta, decodeAcceleratedDelta } from '/data/UserData/move-anything/shared/input_filter.mjs';
+import { decodeDelta, decodeAcceleratedDelta } from '/data/UserData/schwung/shared/input_filter.mjs';
 
 import {
     drawMenuHeader as drawHeader,
     drawMenuFooter as drawFooter
-} from '/data/UserData/move-anything/shared/menu_layout.mjs';
+} from '/data/UserData/schwung/shared/menu_layout.mjs';
 
 const W = 128;
 const H = 64;

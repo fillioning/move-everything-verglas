@@ -1,5 +1,5 @@
 // Copyright 2012 Emilie Gillet. MIT License.
-// Adapted for Move-Anything (non-STM32 target).
+// Adapted for Schwung (non-STM32 target).
 
 #ifndef STMLIB_STMLIB_H_
 #define STMLIB_STMLIB_H_

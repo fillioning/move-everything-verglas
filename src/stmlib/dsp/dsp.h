@@ -1,5 +1,5 @@
 // Copyright 2012 Emilie Gillet. MIT License.
-// Adapted for Move-Anything: portable Clip16/Sqrt (no ARM asm).
+// Adapted for Schwung: portable Clip16/Sqrt (no ARM asm).
 
 #ifndef STMLIB_UTILS_DSP_DSP_H_
 #define STMLIB_UTILS_DSP_DSP_H_

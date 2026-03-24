@@ -1,7 +1,7 @@
-// Move-Anything Clouds — Mutable Instruments Clouds granular processor as audio FX
+// Schwung Clouds — Mutable Instruments Clouds granular processor as audio FX
 // MIT License (Emilie Gillet DSP, community port)
 //
-// Wraps Clouds GranularProcessor into Move-Anything audio_fx_api_v2 interface.
+// Wraps Clouds GranularProcessor into Schwung audio_fx_api_v2 interface.
 // Audio: 44100 Hz, 128 frames/block, stereo interleaved int16.
 
 #include <cstdlib>
@@ -15,7 +15,7 @@
 // ---- Random state (global, shared across instances) ----
 namespace stmlib { uint32_t Random::rng_state_ = 0x12345678; }
 
-// ---- Move-Anything API headers (inline, must match chain_host ABI exactly) ----
+// ---- Schwung API headers (inline, must match chain_host ABI exactly) ----
 extern "C" {
 
 typedef int (*move_mod_emit_value_fn)(void *ctx,

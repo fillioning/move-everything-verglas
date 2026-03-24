@@ -1,7 +1,7 @@
 # Clouds — Claude Code context
 
 ## What this is
-Mutable Instruments Clouds granular processor as audio FX for Ableton Move via Move-Anything.
+Mutable Instruments Clouds granular processor as audio FX for Ableton Move via Schwung.
 
 Plugin type: audio_fx
 Module ID: `clouds`
@@ -102,7 +102,7 @@ UI value 1→`set_quality(2)` (stereo lo-fi / 8-bit mu-law + 2x downsampled).
 - `host_api_v1_t` must have ALL 13 fields — missing any crashes
 - `audio_fx_api_v2_t` field order: process_block BEFORE set_param/get_param/on_midi
 - Capabilities: `chainable: true, audio_in: true`
-- Install path: `/data/UserData/move-anything/modules/audio_fx/clouds/`
+- Install path: `/data/UserData/schwung/modules/audio_fx/clouds/`
 
 ---
 
