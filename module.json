@@ -55,7 +55,11 @@
                 "Filters": {
                     "label": "Filters",
                     "knobs": ["filter_hp", "filter_lp", "limiter_on", "limiter_pre", "limiter_post", "low_boost", "low_freq", "low_q"],
-                    "params": ["filter_hp", "filter_lp", "limiter_on", "limiter_pre", "limiter_post", "low_boost", "low_freq", "low_q"]
+                    "params": ["filter_hp", "filter_lp", "limiter_on", "limiter_pre", "limiter_post", "low_boost", "low_freq", "low_q",
+        { "key": "limiter_pre", "short_name": "Pre" },
+        { "key": "limiter_post", "short_name": "Post" },
+        { "key": "low_boost", "short_name": "Boost" },
+        { "key": "low_freq", "short_name": "Freq" }]
                 }
             }
         }
